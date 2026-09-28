@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decimal a Binario, Octal, Hexadecimal</title>
+    <title>Decimal-Binario-Octal-Hexa</title>
 </head>
 <body>
     <?php
