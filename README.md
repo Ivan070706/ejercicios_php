@@ -1,5 +1,5 @@
 
-# 🐘 EJERCICIOS PHP – 1º DAW
+# 🐘 EJERCICIOS PHP – 2º DAW
 
 Repositorio donde recopilo los ejercicios y prácticas realizados durante el ciclo formativo de **Desarrollo de Aplicaciones Web (DAW)**.
 
@@ -49,7 +49,6 @@ Segunda colección de ejercicios PHP para seguir practicando y reforzando los co
 ## 🛠️ Tecnologías utilizadas
 
 - **HTML5:** estructura de las páginas.
-- **CSS3:** diseño y estilos.
 - **PHP:** programación y resolución de ejercicios.
 
 ## ▶️ Cómo utilizar el proyecto
@@ -61,7 +60,7 @@ Segunda colección de ejercicios PHP para seguir practicando y reforzando los co
 5. Seleccionar la relación de ejercicios que se quiera consultar.
 
 ## 👨‍💻 Autor
-
-Estudiante de **1º de Desarrollo de Aplicaciones Web (DAW)**.
+**Iván Del Cid Plaza**
+Estudiante de **2º de Desarrollo de Aplicaciones Web (DAW)**.
 
 Curso académico: **2026/2027**.
