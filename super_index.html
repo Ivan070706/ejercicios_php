@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PHP Academy | Panel de ejercicios</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #090910;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* FONDO */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #7928ca;
+            filter: blur(180px);
+            opacity: 0.15;
+            top: -200px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #00e5a0;
+            filter: blur(180px);
+            opacity: 0.09;
+            bottom: -150px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        /* NAVEGACIÓN */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #252330;
+            background: #0d0c15;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #a875ff;
+        }
+
+        .nav-info {
+            color: #858394;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* PRESENTACIÓN */
+
+        .hero {
+            text-align: center;
+            padding: 90px 20px 65px;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid #343044;
+            border-radius: 30px;
+            color: #00e5a0;
+            font-size: 11px;
+            letter-spacing: 2px;
+            background: #15131f;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 72px);
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        h1 span {
+            color: #a875ff;
+        }
+
+        .hero p {
+            color: #9996a8;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 20px auto 0;
+            line-height: 1.7;
+        }
+
+        /* CONTENEDOR */
+
+        main {
+            width: 88%;
+            max-width: 1150px;
+            margin: auto;
+            padding-bottom: 80px;
+        }
+
+        .titulo-seccion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .titulo-seccion h2 {
+            font-size: 21px;
+        }
+
+        .titulo-seccion span {
+            color: #858394;
+            font-size: 12px;
+        }
+
+        /* TARJETAS */
+
+        .relaciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .tarjeta {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            min-height: 310px;
+            background: #15141e;
+            border: 1px solid #302d3d;
+            border-radius: 18px;
+            text-decoration: none;
+            color: white;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            border-color: #a875ff;
+            background: #1b1927;
+            box-shadow: 0 15px 40px #a875ff18;
+        }
+
+        .icono {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #292039;
+            color: #b78cff;
+            font-size: 25px;
+            margin-bottom: 25px;
+        }
+
+        .numero {
+            color: #a875ff;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .tarjeta h3 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta p {
+            color: #9693a5;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .boton {
+            display: inline-block;
+            margin-top: auto;
+            padding: 12px 18px;
+            border-radius: 9px;
+            background: #292039;
+            color: #c5a5ff;
+            font-size: 13px;
+            font-weight: 600;
+            width: fit-content;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover .boton {
+            background: #a875ff;
+            color: white;
+        }
+
+        /* RELACIÓN 3 */
+
+        .proximamente {
+            background: #111119;
+            border: 1px dashed #444052;
+            cursor: default;
+        }
+
+        .proximamente:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #444052;
+            background: #111119;
+        }
+
+        .proximamente .icono {
+            background: #22212a;
+            color: #777484;
+        }
+
+        .proximamente .numero {
+            color: #777484;
+        }
+
+        .proximamente .boton {
+            background: #25232d;
+            color: #858394;
+        }
+
+        .estado {
+            display: inline-block;
+            width: fit-content;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #292039;
+            color: #b78cff;
+            font-size: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        /* INFORMACIÓN INFERIOR */
+
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 55px;
+        }
+
+        .dato {
+            padding: 22px;
+            background: #13121b;
+            border: 1px solid #292735;
+            border-radius: 13px;
+            text-align: center;
+        }
+
+        .dato h3 {
+            font-size: 27px;
+            color: #a875ff;
+            margin-bottom: 6px;
+        }
+
+        .dato p {
+            color: #858394;
+            font-size: 12px;
+        }
+
+
+
+        footer {
+            border-top: 1px solid #252330;
+            padding: 30px 20px;
+            text-align: center;
+            color: #777484;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        footer span {
+            color: #00e5a0;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 20px 5%;
+            }
+
+            .nav-info {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 65px;
+            }
+
+            main {
+                width: 90%;
+            }
+
+            .resumen {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <nav>
+
+        <div class="logo">
+            PHP<span>EJERCICIOS.</span>
+        </div>
+
+        <div class="nav-info">
+            MI ESPACIO DE DESARROLLO · 1º DAW
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="etiqueta">
+            DESARROLLO DE APLICACIONES WEB
+        </div>
+
+        <h1>Mi espacio <span>PHP.</span></h1>
+
+        <p>
+            Bienvenido a mi panel de programación.
+            Aquí encontrarás todas mis relaciones,
+            ejercicios y prácticas desarrolladas durante el curso.
+        </p>
+
+    </section>
+
+
+
+
+    <main>
+
+        <div class="titulo-seccion">
+
+            <h2>Mis relaciones</h2>
+
+            <span>CURSO 2026 / 2027</span>
+
+        </div>
+
+
+        <section class="relaciones">
+
+
+
+
+            <a href="relacion_1/index.html" class="tarjeta">
+
+                <div class="icono">01</div>
+
+                <div class="numero">
+                    PRIMERA RELACIÓN
+                </div>
+
+                <h3>Relación 1</h3>
+
+                <p>
+                    Primera colección de ejercicios de PHP.
+                    Introducción a la programación, variables,
+                    arrays, condiciones, bucles y algoritmos.
+                </p>
+
+                <div class="boton">
+                    Acceder a los ejercicios →
+                </div>
+
+            </a>
+
+
+  
+
+            <a href="relacion_2/index.html" class="tarjeta">
+
+                <div class="icono">02</div>
+
+                <div class="numero">
+                    SEGUNDA RELACIÓN
+                </div>
+
+                <h3>Relación 2</h3>
+
+                <p>
+                    Segunda colección de prácticas de PHP.
+                    Un nuevo conjunto de ejercicios para
+                    seguir desarrollando mis conocimientos.
+                </p>
+
+                <div class="boton">
+                    Acceder a los ejercicios →
+                </div>
+
+            </a>
+
+
+     
+
+            <div class="tarjeta proximamente">
+
+                <div class="icono">03</div>
+
+                <div class="numero">
+                    TERCERA RELACIÓN
+                </div>
+
+                <div class="estado">
+                    PRÓXIMAMENTE
+                </div>
+
+                <h3>Relación 3</h3>
+
+                <p>
+                    Una nueva colección de ejercicios y
+                    prácticas de programación que estará
+                    disponible próximamente.
+                </p>
+
+                <div class="boton">
+                    Próximamente
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+
+        <section class="resumen">
+
+            <div class="dato">
+                <h3>02</h3>
+                <p>Relaciones disponibles</p>
+            </div>
+
+            <div class="dato">
+                <h3>03</h3>
+                <p>Relaciones planificadas</p>
+            </div>
+
+            <div class="dato">
+                <h3>PHP</h3>
+                <p>Lenguaje de programación</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer>
+
+        DESARROLLADO CON <span>PHP</span> ·
+        MI PORTAFOLIO DE EJERCICIOS · 1º DAW
+
+    </footer>
+
+</body>
+
+</html>
